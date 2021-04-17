@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
+from .choices import GenderChoice
 
 from .managers import UserManager
 
@@ -9,6 +10,8 @@ class User(AbstractUser):
 
     username = None
     email = models.EmailField(_('Email address'), unique=True)
+    birthday = models.DateField(default=None, null=True)
+    gender = models.PositiveSmallIntegerField(choices=GenderChoice.choices, default=GenderChoice.MALE)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []

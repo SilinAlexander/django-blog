@@ -15,10 +15,8 @@ services:
       - docker/dev/env/.db.env
       - docker/prod/env/.data.env
     depends_on:
-      db:
-        condition: service_started
-      redis:
-        condition: service_started
+      - db
+      - redis
     restart: always
     networks:
       - separated_network
@@ -70,8 +68,7 @@ services:
       - docker/dev/env/.db.env
       - docker/prod/env/.data.env
     depends_on:
-      redis:
-        condition: service_started
+      - redis
     restart: always
     networks:
       - separated_network
