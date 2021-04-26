@@ -38,5 +38,5 @@ if settings.ENABLE_RENDERING:
         path('login/', t_views.LoginView.as_view(), name='login'),
         path('register/', t_views.SignUpView.as_view(), name='sign_up'),
         path('password-recovery/', t_views.PasswordRecoveryView.as_view(), name='password_recovery'),
-
+        path('verify/', t_views.VerifySentView.as_view(), name='verify_sent')
     ]

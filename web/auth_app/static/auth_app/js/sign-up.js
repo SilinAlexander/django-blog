@@ -17,17 +17,44 @@ function signUp(event){
     type : 'post',
     data : data,
     success : function(data){
-      console.log(data)
+    let url = '/auth/verify';
+//    window.location.href = url
     },
     error : function(data){
       console.log(data, 'error')
       $('.help-block').remove()
-      if (typeof data.responseJSON.first_name !== 'undefined'){
-      $('#firstNameGroup').addClass('has-error')
-      $('#firstNameGroup').append(
-        "<div class='help-block'>"+ data.responseJSON.first_name +"</div>"
+      if ( data.responseJSON.first_name ){
+         $('#firstNameGroup').addClass('has-error')
+         $('#firstNameGroup').append(
+         "<div class='help-block'>"+ data.responseJSON.first_name +"</div>"
+      )}
+
+
+      if ( data.responseJSON.last_name ){
+      $('#lastNameGroup').addClass('has-error')
+      $('#lastNameGroup').append(
+        "<div class='help-block'>"+ data.responseJSON.last_name +"</div>"
       )
       }
+
+      if (data.responseJSON.password1 ){
+      $('#passwordGroup').addClass('has-error')
+      $('#passwordGroup').append(
+        "<div class='help-block'>"+ data.responseJSON.password1 +"</div>"
+      )}
+
+      if (data.responseJSON.password2 ){
+      $('#passwordGroup').addClass('has-error')
+      $('#passwordGroup').append(
+        "<div class='help-block'>"+ data.responseJSON.password2 +"</div>"
+      )}
+
+      if (data.responseJSON.email ){
+      $('#emailGroup').addClass('has-error')
+      $('#emailGroup').append(
+        "<div class='help-block'>"+ data.responseJSON.email +"</div>"
+      )}
+
 
 
 

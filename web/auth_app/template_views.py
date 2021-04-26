@@ -11,3 +11,7 @@ class SignUpView(TemplateAPIView):
 
 class PasswordRecoveryView(TemplateAPIView):
     template_name = ''
+
+
+class VerifySentView(TemplateAPIView):
+    template_name = 'auth_app/email_verification.html'

@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from auth_app.utils import get_activate_key
 from main.decorators import except_shell
 from src.celery import app
+from auth_app.tasks import send_verify_email
 
 User = get_user_model()
 
@@ -23,7 +24,7 @@ class CeleryService:
                 'activate_url': key,
             }
         }
-        print(kwargs)
+        send_verify_email.delay(**kwargs)
 
 
 class UserService:
