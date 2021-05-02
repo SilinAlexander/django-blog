@@ -9,6 +9,7 @@ from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 
 from main.services import CeleryService
+from main.choices import GenderChoice
 from .forms import PassResetForm
 from .services import AuthAppService
 
@@ -27,6 +28,8 @@ class UserSignUpSerializer(serializers.Serializer):
     email = serializers.EmailField(required=True)
     password1 = serializers.CharField(write_only=True, min_length=8)
     password2 = serializers.CharField(write_only=True, min_length=8)
+    # birthday = serializers.DateField(allow_null=True)
+    # gender = serializers.ChoiceField(choices=GenderChoice.choices)
 
     def validate_password1(self, password):
         return get_adapter().clean_password(password)

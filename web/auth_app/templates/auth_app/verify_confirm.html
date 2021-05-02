@@ -1,0 +1,12 @@
+{% extends 'auth_app/base.html'%}
+{% load static %}
+
+
+{% block container %}
+<div>
+  <form action="{% url auth_app: 'api_email_verify' %}" method="post"></form>
+</div>
+{% endblock container %}
+
+
+

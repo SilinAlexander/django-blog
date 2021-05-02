@@ -17,8 +17,8 @@ function signUp(event){
     type : 'post',
     data : data,
     success : function(data){
-    let url = '/auth/verify';
-//    window.location.href = url
+    let url = form.data('href');
+    window.location.href = url
     },
     error : function(data){
       console.log(data, 'error')
