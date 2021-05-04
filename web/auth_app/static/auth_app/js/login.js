@@ -1,6 +1,7 @@
 $(function () {
   // $(document).on("click", "a.login", login);
   $('#loginForm').submit(login);
+  $('#forgotPasswordForm').submit(passwordReset);
 });
 
 function login(e) {
@@ -23,4 +24,9 @@ function login(e) {
 
     }
   })
+}
+function passwordReset(e){
+  let form = $(this);
+  e.preventDefault();
+  console.log('passwordReset')
 }

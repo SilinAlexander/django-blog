@@ -3,10 +3,14 @@
 
 
 {% block container %}
-<div>
-  <form action="{% url auth_app: 'api_email_verify' %}" method="post"></form>
+<div id="verifyConfirm" data-href="{% url 'auth_app:api_email_verify' %}">
+</div>
+<div id="successVerify" data-href="{% url 'auth_app:login' %}">
+
 </div>
 {% endblock container %}
-
+{% block jquery %}
+$.getScript('{% static 'auth_app/js/verify_confirm.js' %}');
+{% endblock %}
 
 
