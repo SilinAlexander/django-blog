@@ -1,7 +1,8 @@
+{% load static main %}
 <!-- the comment box -->
 <div class="well">
   <h4><i class="fa fa-paper-plane-o"></i> Leave a Comment:</h4>
-  <form role="form" id="commentForm" method="post" action="">
+  <form role="form" id="commentForm" method="post" action="{% url 'blog:comment-list' %}">
      <div id="emailGroup">
       <input type="email" name="author" placeholder="Your email" class="form-control">
     </div>
@@ -20,13 +21,35 @@
 </div>
 <hr>
 
-<!-- the comments -->
-<h3><i class="fa fa-comment"></i> User One says:
-  <small> 9:41 PM on August 24, 2014</small>
-</h3>
-<p>Excellent post! Thank You the great article, it was useful!</p>
+	<div class="row">
+	<!-- Contenedor Principal -->
+    <div class="comments-container">
+		<h1>Comments</h1>
 
-<h3><i class="fa fa-comment"></i> User Two says:
-  <small> 9:47 PM on August 24, 2014</small>
-</h3>
-<p>Excellent post! Thank You the great article, it was useful!</p>
+		<ul id="comments-list" class="comments-list">
+      {% for comment in comments %}
+			<li>
+				<div class="comment-main-level">
+					<!-- Avatar -->
+					<div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
+					<!-- Contenedor del Comentario -->
+					<div class="comment-box">
+						<div class="comment-head">
+							<h6 class="comment-name by-author"><a href="http://creaticode.com/blog">{{ comment.author }}</a></h6>
+							<span>{{ comment.updated | date_time }}</span>
+							<i class="fa fa-reply"></i>
+							<i class="fa fa-heart"></i>
+						</div>
+						<div class="comment-content">
+              {{ comment.content }}
+
+						</div>
+					</div>
+				</div>
+				<!-- Respuestas de los comentarios -->
+
+			</li>
+      {% endfor %}
+		</ul>
+	</div>
+	</div>

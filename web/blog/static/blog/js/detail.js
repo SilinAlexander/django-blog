@@ -12,5 +12,20 @@ function commentCreate(event){
     let data = form.serialize()
     console.log(data)
 
+    $.ajax({
+    url: path,
+    type: 'post',
+    data: data,
+    success: function(data){
+    location.reload()
+    },
+    error: function(data){
+    console.log('error', data)
+    }
+
+
+    })
 }
+
+
 console.log('blog-detail')

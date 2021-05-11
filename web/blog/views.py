@@ -55,3 +55,7 @@ class ArticleViewSet(ViewSet):
         response = super().retrieve(request, **kwargs)
         response.template_name = self.get_template_name()
         return response
+
+
+class CommentViewSet(ViewSet):
+    serializer_class = serializers.CommentSerializer
