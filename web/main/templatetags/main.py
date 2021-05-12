@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from django import template
 from django.conf import settings
@@ -17,4 +17,8 @@ def microservice_title():
 def date(value: str):
     """ 2021-04-11T18:02:37.066850Z """
     time = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%fZ')
-    return time.strftime('%b %dth, %Y')
+    now = datetime.now()
+    difference = now - time
+    if difference > timedelta(days=7):
+        return time.strftime('%b %dth, %Y')
+    return time.strftime('%b %dth, %Y %H:%M')

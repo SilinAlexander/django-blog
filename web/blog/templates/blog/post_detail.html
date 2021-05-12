@@ -10,8 +10,8 @@
   <div class="col-lg-8">
 
     <!-- the actual blog post: title/author/date/content -->
-    <h1><a href="">Blog Post Template for Bootstrap</a></h1>
-    <p class="lead"><i class="fa fa-user"></i> by <a href="">Super User</a>
+    <h1><a href="">{{ title }}</a></h1>
+    <p class="lead"><i class="fa fa-user"></i> by <a href="">{{ author.full_name }}</a>
     </p>
     <hr>
     <p><i class="fa fa-calendar"></i> Posted on August 24, 2014 at 9:00 PM</p>
@@ -24,14 +24,6 @@
     <hr>
     <p class="lead">Welcome to Bootstrap Blog Template! This is a blog template example, built with Bootstrap.
       Contains "tools" that would be needed in a post.</p>
-    <p>Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum
-      dolor.</p>
-    <p>Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor.
-      Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor.</p>
-    <p>Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor.
-      Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor.</p>
-    <p>Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor.
-      Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor.</p>
     <br/>
 
     <br/>
@@ -39,15 +31,6 @@
 
 
     <br/>
-    <p>
-    <h3>This Youtube Player is responsive!</h3></p>
-    <p>Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum
-      dolor.</p>
-    <blockquote>
-      <p>„Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.”</p>
-      <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
-    </blockquote>
-    <p><h4>I like the post? Like this!</h4></p>
 
 
     <div class="g-plusone" data-annotation="inline" data-width="300" data-href=""></div>
@@ -58,9 +41,7 @@
     {% include 'blog/includes/comments.html' %}
   </div>
 
-  {% block right_sidebar %}
-  {{ block.super }}
-  {% endblock right_sidebar %}
+  {% include 'blog/includes/right_sidebar.html' %}
 </div>
 {% endblock container %}
 
