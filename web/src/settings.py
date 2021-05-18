@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
+
 ]
 
 THIRD_PARTY_APPS = [
@@ -83,6 +84,7 @@ THIRD_PARTY_APPS = [
     'corsheaders',
     'rosetta',
     'django_summernote',
+    # 'django_countries',
 
 ]
 
@@ -91,6 +93,7 @@ LOCAL_APPS = [
     'auth_app.apps.AuthAppConfig',
     'blog.apps.BlogConfig',
     'contact_us.apps.ContactUsConfig',
+    'userprofile.apps.UserprofileConfig',
 
 ]
 
