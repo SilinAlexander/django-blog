@@ -28,8 +28,8 @@ urlpatterns += [
 urlpatterns += router.urls
 
 urlpatterns += [
-    path('password-reset/<uidb64>/<token>/', TemplateAPIView.as_view(
-        template_name='auth_app/password_reset_confirm.html'),
+    path('password-reset/<uidb64>/<token>/',
+         TemplateAPIView.as_view(template_name='auth_app/password_reset_confirm.html'),
          name='password_reset_confirm'),
     path('verify-email/<key>/', TemplateAPIView.as_view(template_name='auth_app/verify_confirm.html'),
          name='account_verification'),

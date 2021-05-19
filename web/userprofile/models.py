@@ -24,4 +24,4 @@ class Address(models.Model):
     objects = models.Manager()
 
     def __str__(self):
-        return "{country} - {city}".format(country=self.country, city=self.city)
+        return "{city}".format(city=self.city)

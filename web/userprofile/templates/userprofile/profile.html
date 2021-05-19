@@ -1,5 +1,5 @@
 {% extends "userprofile/base.html" %}
-
+{% load static %}
 
 {% block container %}
 <div class="row">
@@ -24,7 +24,7 @@
   <div class="col-sm-9">
     <ul class="nav nav-tabs">
       <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-      <li><a data-toggle="tab" href="#messages">Menu 1</a></li>
+      <li><a data-toggle="tab" href="#messages">Settings</a></li>
       <li><a data-toggle="tab" href="#settings">Menu 2</a></li>
     </ul>
 
@@ -38,3 +38,6 @@
 
 </div><!--/col-9-->
 {% endblock container %}
+{% block jquery %}
+$.getScript('{% static 'userprofile/js/profile.js' %}');
+{% endblock %}

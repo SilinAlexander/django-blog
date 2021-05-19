@@ -18,12 +18,14 @@ User = get_user_model()
 
 
 class UserProfileViewSet(GenericViewSet):
-    template_name ='userprofile/profile.html'
+    template_name = 'userprofile/profile.html'
 
     def get_template_name(self):
         return 'userprofile/profile.html'
 
     def get_serializer_class(self):
+        if self.action == 'change_password':
+            return serializers.ChangePasswordSerializer
         return serializers.UserProfileSerializer
 
     def get_queryset(self):
@@ -38,8 +40,8 @@ class UserProfileViewSet(GenericViewSet):
         serializer = self.get_serializer(instance=self.get_object())
         return Response(serializer.data)
 
-
-
-
-
-
+    def change_password(self, request):
+        serializer = self.get_serializer(instance=self.get_object(), data=request.data)
+        serializer.is_valid(raise_exeption=True)
+        serializer.save()
+        return Response({'detail': 'New password has been saved'})

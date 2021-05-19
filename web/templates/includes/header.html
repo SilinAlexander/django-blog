@@ -26,6 +26,11 @@
       <li {% if selected == 'about' %}class="active"{% endif %}>
       <a href=""></i> About</a>
       </li>
+      {% if user.is_authenticated %}
+      <li {% if selected == 'userprofile' %}class="active"{% endif %}>
+      <a href="{% url 'userprofile:profile'%}"></i> Profile</a>
+      </li>
+      {% endif %}
 
       <form class="navbar-form navbar-right">
         <input type="text" class="form-control col-lg-8" placeholder="Search...">

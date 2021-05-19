@@ -1,15 +1,24 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
-from .models import Profile
+from .models import Profile, Address
+from dj_rest_auth.serializers import PasswordChangeSerializer
 
 User = get_user_model()
 
 
+class AddressSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Address
+        fields = ('id', 'region', 'city', 'street', 'index')
+
+
 class ProfileSerializer(serializers.ModelSerializer):
+    address = AddressSerializer(source='address_set', many=True)
 
     class Meta:
         model = Profile
-        fields = ('phone', 'image')
+        fields = ('phone', 'image', 'address')
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
@@ -20,3 +29,5 @@ class UserProfileSerializer(serializers.ModelSerializer):
         fields = ('id', 'email', 'full_name', 'is_active', 'profile')
 
 
+class ChangePasswordSerializer(PasswordChangeSerializer):
+    pass

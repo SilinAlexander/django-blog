@@ -10,6 +10,3 @@ class ProfileAdmin(admin.ModelAdmin):
 @admin.register(Address)
 class AddressAdmin(admin.ModelAdmin):
     pass
-
-
-

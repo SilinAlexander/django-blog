@@ -8,7 +8,9 @@ app_name = 'userprofile'
 router = DefaultRouter()
 
 urlpatterns = [
-    path('profile/', views.UserProfileViewSet.as_view({'get': 'profile'}))
+    path('profile/', views.UserProfileViewSet.as_view({'get': 'profile'}), name='profile'),
+    path('change-password/', views.UserProfileViewSet.as_view({'post': 'change-password'}), name='api_change_password')
+
 
 ]
 
