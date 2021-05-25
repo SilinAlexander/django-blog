@@ -9,6 +9,7 @@ from rest_framework import status
 from rest_framework.viewsets import GenericViewSet
 from . import services
 from . import serializers
+from rest_framework.parsers import JSONParser, MultiPartParser
 
 
 logger = logging.getLogger(__name__)
@@ -19,6 +20,7 @@ User = get_user_model()
 
 class UserProfileViewSet(GenericViewSet):
     template_name = 'userprofile/profile.html'
+    parser_classes = (MultiPartParser, )
 
     def get_template_name(self):
         return 'userprofile/profile.html'
@@ -26,6 +28,8 @@ class UserProfileViewSet(GenericViewSet):
     def get_serializer_class(self):
         if self.action == 'change_password':
             return serializers.ChangePasswordSerializer
+        if self.action == 'change_avatar':
+            return serializers.ChangeAvatarSerializer
         return serializers.UserProfileSerializer
 
     def get_queryset(self):
@@ -42,6 +46,15 @@ class UserProfileViewSet(GenericViewSet):
 
     def change_password(self, request):
         serializer = self.get_serializer(instance=self.get_object(), data=request.data)
-        serializer.is_valid(raise_exeption=True)
+        serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response({'detail': 'New password has been saved'})
+
+    def change_avatar(self, request):
+        profile = request.user.profile_set
+        serializer = self.get_serializer(instance=profile, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+
+

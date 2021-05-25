@@ -31,3 +31,10 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
 class ChangePasswordSerializer(PasswordChangeSerializer):
     pass
+
+
+class ChangeAvatarSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Profile
+        fields = ('image', )
