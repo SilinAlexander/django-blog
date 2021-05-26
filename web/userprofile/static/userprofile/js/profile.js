@@ -1,7 +1,7 @@
 console.log('ttt')
 $(function(){
 $('#fileUpload').on('change', changeAvatar)
-
+$('#changePasswordForm').submit(passwordChange)
 }
 )
 
@@ -25,6 +25,28 @@ function passwordChange(event){
     },
     error: function(data){
     console.log('error', data)
+    let groups = ['#oldPasswordGroup', '#newPassword1Group', '#newPassword2Group']
+    for (let group of groups){
+    $(group).removeClass('has-error')
+    }
+    $('.help-block').remove()
+      if ( data.responseJSON.old_password ){
+         $('#oldPasswordGroup').addClass('has-error')
+         $('#oldPasswordGroup').append(
+         "<div class='help-block'>"+ data.responseJSON.old_password +"</div>"
+      )}
+
+      if ( data.responseJSON.new_password1 ){
+         $('#newPassword1Group').addClass('has-error')
+         $('#newPassword1Group').append(
+         "<div class='help-block'>"+ data.responseJSON.new_password1 +"</div>"
+      )}
+
+      if ( data.responseJSON.new_password2 ){
+         $('#newPassword2Group').addClass('has-error')
+         $('#newPassword2Group').append(
+         "<div class='help-block'>"+ data.responseJSON.new_password2 +"</div>"
+      )}
     }
 
 
@@ -51,7 +73,7 @@ function changeAvatar(e){
    contentType: false,
    processData: false,
    success: function(data){
-   console.log('success', data)
+   $('#user_avatar').attr('src', data.image)
    },
    error: function(data){
    console.log('error', data)

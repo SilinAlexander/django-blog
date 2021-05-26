@@ -20,7 +20,7 @@ User = get_user_model()
 
 class UserProfileViewSet(GenericViewSet):
     template_name = 'userprofile/profile.html'
-    parser_classes = (MultiPartParser, )
+    # parser_classes = (MultiPartParser, JSONParser)
 
     def get_template_name(self):
         return 'userprofile/profile.html'
