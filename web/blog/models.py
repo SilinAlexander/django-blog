@@ -29,9 +29,9 @@ class Category(models.Model):
 
 class Article(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name='article_set')
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, allow_unicode=True, unique=True)
-    content = models.TextField()
+    content = models.TextField(db_index=True)
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='article_set')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
