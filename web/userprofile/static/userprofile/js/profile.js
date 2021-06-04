@@ -1,10 +1,37 @@
 console.log('ttt')
 $(function(){
-$('#fileUpload').on('change', changeAvatar)
-$('#changePasswordForm').submit(passwordChange)
+$('#fileUpload').on('change', changeAvatar);
+$('#changePasswordForm').submit(passwordChange);
+$('#profileForm').submit(profileUpdate)
 }
 )
 
+
+function profileUpdate(e){
+    e.preventDefault();
+    console.log('click')
+    let form = $(this);
+    let path = form.attr('action')
+    console.log(path)
+    let data = form.serialize()
+    console.log(data)
+
+
+    $.ajax({
+    url: path,
+    type: 'put',
+    data: data,
+    success: function(data){
+    console.log('success', data)
+//    location.reload()
+    },
+    error: function(data){
+    console.log('error', data)
+    }
+    })
+
+
+}
 
 
 function passwordChange(event){

@@ -26,9 +26,7 @@
         <input type="password" name="password1" value="" class="form-control input-lg" placeholder="Password"/>
         <input type="password" name="password2" value="" class="form-control input-lg" placeholder="Confirm Password"/>
       </div>
-      <div class="form-group" id="birthdayGroup">
-        <input type="date" name="birthday" value="" class="form-control input-lg"/>
-      </div>
+      {% include 'auth_app/includes/birth_date.html' %}
 
       {% include 'auth_app/includes/gender.html' %}
       <br/>

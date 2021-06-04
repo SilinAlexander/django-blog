@@ -38,3 +38,12 @@ class ChangeAvatarSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = ('image', )
+
+
+class UpdateProfileSerializer(serializers.ModelSerializer):
+    first_name = serializers.CharField(min_length=2)
+    last_name = serializers.CharField(min_length=2)
+
+    class Meta:
+        model = User
+        fields = ('id', 'first_name', 'last_name', 'gender', 'birthday')

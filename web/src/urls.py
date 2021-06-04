@@ -18,6 +18,7 @@ urlpatterns = [
     path('rosetta/', include('rosetta.urls')),
     path('summernote/', include('django_summernote.urls')),
     path('', include('userprofile.urls')),
+    path('', include('actions.urls')),
 ]
 
 urlpatterns += swagger_url

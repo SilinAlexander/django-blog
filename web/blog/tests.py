@@ -11,4 +11,9 @@ class BlogTest(APITestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK, response.data)
 
+    def test_article_list(self):
+        url = reverse_lazy('blog:post-list', kwargs={'slug': 'крутая'})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK, response.data)
+
 

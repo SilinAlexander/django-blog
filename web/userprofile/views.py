@@ -30,6 +30,8 @@ class UserProfileViewSet(GenericViewSet):
             return serializers.ChangePasswordSerializer
         if self.action == 'change_avatar':
             return serializers.ChangeAvatarSerializer
+        if self.action == 'update':
+            return serializers.UpdateProfileSerializer
         return serializers.UserProfileSerializer
 
     def get_queryset(self):
@@ -56,5 +58,14 @@ class UserProfileViewSet(GenericViewSet):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
+
+    def update(self, request):
+        serializer = self.get_serializer(instance=request.user, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+
+
+
 
 
