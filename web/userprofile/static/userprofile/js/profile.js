@@ -27,6 +27,10 @@ function profileUpdate(e){
     },
     error: function(data){
     console.log('error', data)
+    $("#profileGroup").addClass("has-error");
+      $("#profileGroup").append(
+        '<div class="help-block">' + data.responseJSON.profile + "</div>"
+      );
     }
     })
 
@@ -48,7 +52,11 @@ function passwordChange(event){
     type: 'post',
     data: data,
     success: function(data){
-    location.reload()
+//    location.reload()
+    $('#passwordChangeSuccess').append(
+    '<h3>' + data.detail + '</h3>'
+    )
+
     },
     error: function(data){
     console.log('error', data)
