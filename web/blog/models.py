@@ -3,6 +3,8 @@ from django.contrib.auth import get_user_model
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 from rest_framework.reverse import reverse_lazy
+from django.contrib.contenttypes.fields import GenericRelation
+from actions.models import LikeDislike
 
 from . import managers
 from .choices import ArticleStatus
@@ -37,6 +39,7 @@ class Article(models.Model):
     updated = models.DateTimeField(auto_now=True)
     status = models.PositiveSmallIntegerField(choices=ArticleStatus.choices, default=ArticleStatus.INACTIVE)
     image = models.ImageField(upload_to='articles/', blank=True, default='no-image-available.jpg')
+    votes = GenericRelation(LikeDislike, related_query_name='articles')
     objects = models.Manager()
 
     @property

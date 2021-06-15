@@ -1,5 +1,5 @@
 {% extends "blog/base.html" %}
-{% load static main %}
+{% load static main i18n %}
 
 {% block head %}
 <link href="{% static 'blog/css/comments.css' %}" rel="stylesheet">
@@ -13,6 +13,16 @@
     <h1><a href="">{{ title }}</a></h1>
     <p class="lead"><i class="fa fa-user"></i> by <a href="">{{ author.full_name }}</a>
     </p>
+    <ul>
+      <li data-id="{{ id }}" data-type="article" data-action="like" title="{% trans 'Like' %}">
+        <span class="glyphicon glyphicon-thumbs-up"></span>
+        <span data-count="like"></span>
+      </li>
+      <li data-id="{{ id }}" data-type="article" data-action="dislike" title="{% trans 'Dislike' %}">
+        <span class="glyphicon glyphicon-thumbs-down"></span>
+        <span data-count="dislike"></span>
+      </li>
+    </ul>
     <hr>
     <p><i class="fa fa-calendar"></i> Posted on August 24, 2014 at 9:00 PM</p>
     <p><i class="fa fa-tags"></i> Tags: <a href=""><span class="badge badge-info">Bootstrap</span></a> <a
@@ -48,4 +58,6 @@
 
 {% block jquery %}
 $.getScript('{% static 'blog/js/detail.js' %}');
+$.getScript('{% static 'actions/js/likes.js' %}');
 {% endblock %}
+

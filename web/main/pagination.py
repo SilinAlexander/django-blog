@@ -11,4 +11,3 @@ class DefaultPagination(PageNumberPagination):
         response = super().get_paginated_response(data)
         response.data.update(self.get_html_context())
         return response
-
