@@ -13,8 +13,10 @@ logger = logging.getLogger(__name__)
 
 class LikeDislikeView(GenericAPIView):
 
+    serializer_class = serializers.LikeDislikeSerializer
+
     def post(self, request):
         serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exeption=True)
+        serializer.is_valid(raise_exception=True)
         serializer.save()
-        return Response()
+        return Response({})

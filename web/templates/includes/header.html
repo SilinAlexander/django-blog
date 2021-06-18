@@ -27,7 +27,7 @@
       <a href=""></i> About</a>
       </li>
       {% if user.is_authenticated %}
-      <li {% if selected == 'userprofile' %}class="active"{% endif %}>
+      <li {% if selected == 'profile' %}class="active"{% endif %}>
       <a href="{% url 'userprofile:profile'%}"></i> Profile</a>
       </li>
       {% endif %}

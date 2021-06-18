@@ -14,11 +14,13 @@
     <p class="lead"><i class="fa fa-user"></i> by <a href="">{{ author.full_name }}</a>
     </p>
     <ul>
-      <li data-id="{{ id }}" data-type="article" data-action="like" title="{% trans 'Like' %}">
+      <li id="like_article" data-id="{{ id }}" data-type="article" data-action="like" title="{% trans 'Like' %}"
+      data-href="{% url 'actions:like_dislike' %}">
         <span class="glyphicon glyphicon-thumbs-up"></span>
         <span data-count="like"></span>
       </li>
-      <li data-id="{{ id }}" data-type="article" data-action="dislike" title="{% trans 'Dislike' %}">
+      <li id="dislike_article" data-id="{{ id }}" data-type="article" data-action="dislike" title="{% trans 'Dislike' %}"
+      data-href="{% url 'actions:like_dislike' %}">
         <span class="glyphicon glyphicon-thumbs-down"></span>
         <span data-count="dislike"></span>
       </li>
