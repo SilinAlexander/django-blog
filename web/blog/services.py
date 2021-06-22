@@ -3,6 +3,7 @@ from django.db.models import Count
 
 from .choices import ArticleStatus
 from .models import Category, Article, Comment
+from main.decorators import except_shell
 
 
 class BlogService:
@@ -15,3 +16,10 @@ class BlogService:
     def get_active_articles():
         return Article.objects.filter(status=ArticleStatus.ACTIVE)\
             .annotate(comments_count=Count('comment_set')).prefetch_related('comment_set')
+
+    @staticmethod
+    @except_shell((Article.DoesNotExist, ))
+    def get_article(article_id: int):
+        return Article.objects.get(id=article_id)
+
+

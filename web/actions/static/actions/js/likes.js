@@ -38,4 +38,29 @@ function dislike(e){
   let dislike_button = $(this);
   e.preventDefault();
   console.log('dislike')
+  let object_id = dislike_button.data('id')
+  console.log(object_id)
+  let vote = -1
+  console.log(vote)
+  let model = dislike_button.data('type')
+  console.log(model)
+  let data ={
+  'object_id':  dislike_button.data('id'),
+  'vote': -1,
+  'model': dislike_button.data('type')
+  }
+  $.ajax({
+  url: dislike_button.data('href'),
+  type: "POST",
+    dataType: 'json',
+    data: data,
+    success: function (data) {
+        console.log('success', data)
+    },
+    error: function (data) {
+        console.log('error', data)
+
+    }
+
+  })
 }
