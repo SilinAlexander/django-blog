@@ -17,12 +17,12 @@
       <li id="like_article" data-id="{{ id }}" data-type="article" data-action="like" title="{% trans 'Like' %}"
       data-href="{% url 'actions:like_dislike' %}">
         <span class="glyphicon glyphicon-thumbs-up"></span>
-        <span data-count="like"></span>
+        <span data-count="like" id="articleLikeCount"> {{ likes }}</span>
       </li>
       <li id="dislike_article" data-id="{{ id }}" data-type="article" data-action="dislike" title="{% trans 'Dislike' %}"
       data-href="{% url 'actions:like_dislike' %}">
         <span class="glyphicon glyphicon-thumbs-down"></span>
-        <span data-count="dislike"></span>
+        <span data-count="dislike" id="articleDislikeCount"> {{ dislikes }}</span>
       </li>
     </ul>
     <hr>

@@ -26,6 +26,10 @@ function like(e){
     data: data,
     success: function (data) {
         console.log('success', data)
+        $('#articleLikeCount').text(data.like_count)
+        $('#articleDislikeCount').text(data.dislike_count)
+
+//        like_button.find('[data-count="like"]').text(data.like_count)
     },
     error: function (data) {
         console.log('error', data)
@@ -56,6 +60,9 @@ function dislike(e){
     data: data,
     success: function (data) {
         console.log('success', data)
+//        dislike_button.find('[data-count="dislike"]').text(data.dislike_count)
+        $('#articleLikeCount').text(data.like_count)
+        $('#articleDislikeCount').text(data.dislike_count)
     },
     error: function (data) {
         console.log('error', data)

@@ -4,6 +4,8 @@ from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 from rest_framework.reverse import reverse_lazy
 from django.contrib.contenttypes.fields import GenericRelation
+
+from actions.choices import LikeStatus
 from actions.models import LikeDislike
 
 from . import managers
@@ -56,6 +58,14 @@ class Article(models.Model):
     def get_absolute_url(self):
         url = 'blog:post-detail'
         return reverse_lazy(url, kwargs={'slug': self.slug})
+
+    @property
+    def likes(self):
+        return self.votes.filter(vote=LikeStatus.LIKE).count()
+
+    @property
+    def dislikes(self):
+        return self.votes.filter(vote=LikeStatus.DISLIKE).count()
 
     class Meta:
         verbose_name = _('Article')
