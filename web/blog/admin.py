@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django_summernote.admin import SummernoteModelAdmin
-
+from actions.admin import LikeDislikeInline
 
 from .models import Article, Category, Comment
 
@@ -9,10 +9,11 @@ from .models import Article, Category, Comment
 class ArticleAdmin(SummernoteModelAdmin):
     list_display = ('title', 'category', 'status', 'author')
     summernote_fields = ('content',)
-    fields = ('category', 'title', 'status', 'author', 'image', 'content', 'created', 'updated')
-    readonly_fields = ('created', 'updated')
+    fields = ('category', 'title', 'status', 'author', 'image', 'content', 'created', 'updated', 'likes', 'dislikes', )
+    readonly_fields = ('created', 'updated', 'likes', 'dislikes', )
     list_select_related = ('category', 'author')
     list_filter = ('status',)
+    inlines = (LikeDislikeInline, )
 
 
 @admin.register(Category)

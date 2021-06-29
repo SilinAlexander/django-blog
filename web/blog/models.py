@@ -80,9 +80,18 @@ class Comment(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comment_set')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    votes = GenericRelation(LikeDislike, related_query_name='comments')
 
     objects = models.Manager()
 
     class Meta:
         verbose_name = _('Comment')
         verbose_name_plural = _('Comments')
+
+    @property
+    def likes(self) -> int:
+        return self.votes.filter(vote=LikeStatus.LIKE).count()
+
+    @property
+    def dislikes(self) -> int:
+        return 0

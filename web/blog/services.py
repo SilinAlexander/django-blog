@@ -22,4 +22,11 @@ class BlogService:
     def get_article(article_id: int):
         return Article.objects.get(id=article_id)
 
+    @staticmethod
+    @except_shell((Comment.DoesNotExist,))
+    def get_comment(comment_id: int):
+        return Comment.objects.get(id=comment_id)
+
+
+
 

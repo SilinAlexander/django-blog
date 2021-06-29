@@ -2,6 +2,7 @@
 $(function(){
 $('#like_article').click(like)
 $('#dislike_article').click(dislike)
+$('#likeButtonComment').click(likeComment)
 
 })
 function like(e){
@@ -70,4 +71,13 @@ function dislike(e){
     }
 
   })
+}
+
+function likeComment(e){
+  let like_button = $(this);
+  e.preventDefault();
+  console.log('like')
+  let object_id = like_button.data('id')
+  console.log(object_id)
+
 }
