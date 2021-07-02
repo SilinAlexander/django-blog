@@ -38,8 +38,9 @@
 							<h6 class="comment-name by-author"><a href="http://creaticode.com/blog">{{ comment.author }}</a></h6>
 							<span>{{ comment.updated | date_time }}</span>
 							<i class="fa fa-reply"></i>
-							<a data-href="{% url 'actions:like_dislike' %}" id="likeButtonComment" data-type="comment">
-                <i class="fa fa-heart" ></i></a>
+
+                <i class="fa fa-heart commentLike" data-href="{% url 'actions:like_dislike' %}"  data-type="comment"
+                data-id="{{ comment.id }}"></i>
 						</div>
 						<div class="comment-content">
               {{ comment.content }}

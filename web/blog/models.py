@@ -60,11 +60,11 @@ class Article(models.Model):
         return reverse_lazy(url, kwargs={'slug': self.slug})
 
     @property
-    def likes(self):
+    def likes(self) -> int:
         return self.votes.filter(vote=LikeStatus.LIKE).count()
 
     @property
-    def dislikes(self):
+    def dislikes(self) -> int:
         return self.votes.filter(vote=LikeStatus.DISLIKE).count()
 
     class Meta:

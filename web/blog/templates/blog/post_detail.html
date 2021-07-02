@@ -2,6 +2,7 @@
 {% load static main i18n %}
 
 {% block head %}
+<script src="https://kit.fontawesome.com/fe539a9d82.js" crossorigin="anonymous"></script>
 <link href="{% static 'blog/css/comments.css' %}" rel="stylesheet">
 {% endblock head %}
 
@@ -14,17 +15,27 @@
     <p class="lead"><i class="fa fa-user"></i> by <a href="">{{ author.full_name }}</a>
     </p>
     <ul>
-      <li id="like_article" data-id="{{ id }}" data-type="article" data-action="like" title="{% trans 'Like' %}"
-      data-href="{% url 'actions:like_dislike' %}">
-        <span class="glyphicon glyphicon-thumbs-up"></span>
-        <span data-count="like" id="articleLikeCount"> {{ likes }}</span>
-      </li>
-      <li id="dislike_article" data-id="{{ id }}" data-type="article" data-action="dislike" title="{% trans 'Dislike' %}"
-      data-href="{% url 'actions:like_dislike' %}">
-        <span class="glyphicon glyphicon-thumbs-down"></span>
-        <span data-count="dislike" id="articleDislikeCount"> {{ dislikes }}</span>
-      </li>
-    </ul>
+        <li id="likeArticle" data-href="{% url 'actions:like_dislike' %}" data-id="{{ id }}" data-type="article"
+            data-vote=1 title="{% trans 'Like' %}">
+          <i id="articleLikeIcon"
+                  {% if like_status == 'liked' %}
+             class="fas fa-thumbs-up"
+                  {% elif like_status == 'disliked' or like_status == 'undone' %}
+             class="far fa-thumbs-up"
+                  {% endif %}>
+          </i><span id="articleLikeCount"> {{ likes }}</span>
+        </li>
+        <li id="dislikeArticle" data-href="{% url 'actions:like_dislike' %}" data-id="{{ id }}" data-type="article"
+            data-vote=-1 title="{% trans 'Dislike' %}">
+          <i id="articleDislikeIcon"
+                  {% if like_status == 'disliked' %}
+             class="fas fa-thumbs-down"
+                  {% elif like_status == 'liked' or like_status == 'undone' %}
+             class="far fa-thumbs-down"
+                  {% endif %} >
+          </i><span id="articleDislikeCount"> {{ dislikes }}</span>
+        </li>
+      </ul>
     <hr>
     <p><i class="fa fa-calendar"></i></p>
     <p><i class="fa fa-tags"></i> Tags: <a href=""><span class="badge badge-info">Bootstrap</span></a> <a
@@ -34,8 +45,7 @@
     <hr>
     <img src="http://placehold.it/900x300" class="img-responsive">
     <hr>
-    <p class="lead">Welcome to Bootstrap Blog Template! This is a blog template example, built with Bootstrap.
-      Contains "tools" that would be needed in a post.</p>
+
     <br/>
 
     <br/>
