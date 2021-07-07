@@ -2,8 +2,8 @@
 {% load static main i18n %}
 
 {% block head %}
-<script src="https://kit.fontawesome.com/fe539a9d82.js" crossorigin="anonymous"></script>
 <link href="{% static 'blog/css/comments.css' %}" rel="stylesheet">
+<script src="https://kit.fontawesome.com/fe539a9d82.js" crossorigin="anonymous"></script>
 {% endblock head %}
 
 {% block container %}
@@ -20,7 +20,7 @@
           <i id="articleLikeIcon"
                   {% if like_status == 'liked' %}
              class="fas fa-thumbs-up"
-                  {% elif like_status == 'disliked' or like_status == 'undone' %}
+                  {% else %}
              class="far fa-thumbs-up"
                   {% endif %}>
           </i><span id="articleLikeCount"> {{ likes }}</span>
@@ -30,26 +30,26 @@
           <i id="articleDislikeIcon"
                   {% if like_status == 'disliked' %}
              class="fas fa-thumbs-down"
-                  {% elif like_status == 'liked' or like_status == 'undone' %}
+                  {% else %}
              class="far fa-thumbs-down"
                   {% endif %} >
           </i><span id="articleDislikeCount"> {{ dislikes }}</span>
         </li>
       </ul>
     <hr>
-    <p><i class="fa fa-calendar"></i></p>
+    <p><i class="fa fa-calendar"></i> {{ updated }} </p>
     <p><i class="fa fa-tags"></i> Tags: <a href=""><span class="badge badge-info">Bootstrap</span></a> <a
       href=""><span class="badge badge-info">Web</span></a> <a href=""><span class="badge badge-info">CSS</span></a>
       <a href=""><span class="badge badge-info">HTML</span></a></p>
 
     <hr>
-    <img src="http://placehold.it/900x300" class="img-responsive">
+
     <hr>
 
     <br/>
 
     <br/>
-    <div style="text-align: center;"><p><strong>Embed Youtube player:</strong></div>
+
 
 
     <br/>

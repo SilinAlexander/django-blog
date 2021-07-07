@@ -14,6 +14,7 @@ class ArticleAdmin(SummernoteModelAdmin):
     list_select_related = ('category', 'author')
     list_filter = ('status',)
     inlines = (LikeDislikeInline, )
+    list_editable = ('author', 'status', )
 
 
 @admin.register(Category)

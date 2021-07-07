@@ -18,7 +18,7 @@ class LikeDislikeSerializer(serializers.Serializer):
         model = self.validated_data['model']
         user = self.context['request'].user
         vote = self.validated_data['vote']
-        icon_status =LikeIconStatus.LIKED if vote == LikeStatus.LIKE else LikeIconStatus.DISLIKED
+        icon_status = LikeIconStatus.LIKED if vote == LikeStatus.LIKE else LikeIconStatus.DISLIKED
         if model == LikeObjects.ARTICLE:
             obj: Article = BlogService.get_article(self.validated_data['object_id'])
             print(obj)
@@ -47,9 +47,3 @@ class LikeDislikeSerializer(serializers.Serializer):
             'status': icon_status,
         }
         return data
-
-
-
-
-
-

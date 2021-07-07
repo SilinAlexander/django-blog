@@ -26,7 +26,3 @@ class BlogService:
     @except_shell((Comment.DoesNotExist,))
     def get_comment(comment_id: int):
         return Comment.objects.get(id=comment_id)
-
-
-
-
