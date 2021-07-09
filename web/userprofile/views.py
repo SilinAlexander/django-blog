@@ -9,6 +9,7 @@ from rest_framework import status
 from rest_framework.viewsets import GenericViewSet
 from .services import UserprofileService
 from . import serializers
+from .serializers import UserSerializer
 from rest_framework.parsers import JSONParser, MultiPartParser
 
 
@@ -65,4 +66,16 @@ class UserProfileViewSet(GenericViewSet):
         serializer = self.get_serializer(instance=request.user, data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
+        return Response(serializer.data)
+
+
+class UserListView(GenericAPIView):
+
+    serializer_class = UserSerializer
+
+    def get_queryset(self):
+        return UserprofileService.user_queryset()
+
+    def get(self, request):
+        serializer = self.get_serializer(self.get_queryset(), many=True)
         return Response(serializer.data)

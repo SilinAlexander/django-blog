@@ -13,6 +13,7 @@ urlpatterns = [
          name='api_change_password'),
     path('profile/change-avatar/', views.UserProfileViewSet.as_view({'post': 'change_avatar'}),
          name='api_change_avatar'),
+    path('users/', views.UserListView.as_view(), name='user_list')
 
 
 ]

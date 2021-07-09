@@ -47,3 +47,11 @@ class UpdateProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'first_name', 'last_name', 'gender', 'birthday')
+
+
+class UserSerializer(serializers.ModelSerializer):
+    image = serializers.CharField(source='profile_set.image')
+
+    class Meta:
+        model = User
+        fields = ('id', 'full_name', 'image')
