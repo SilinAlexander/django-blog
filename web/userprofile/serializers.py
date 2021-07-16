@@ -50,7 +50,7 @@ class UpdateProfileSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    image = serializers.CharField(source='profile_set.image')
+    image = serializers.ImageField(source='profile_set.image')
 
     class Meta:
         model = User

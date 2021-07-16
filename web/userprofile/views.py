@@ -71,6 +71,8 @@ class UserProfileViewSet(GenericViewSet):
 
 class UserListView(GenericAPIView):
 
+    template_name = 'userprofile/users.html'
+
     serializer_class = UserSerializer
 
     def get_queryset(self):
@@ -78,4 +80,7 @@ class UserListView(GenericAPIView):
 
     def get(self, request):
         serializer = self.get_serializer(self.get_queryset(), many=True)
-        return Response(serializer.data)
+        data = {
+            'users': serializer.data
+        }
+        return Response(data, template_name=self.template_name)
