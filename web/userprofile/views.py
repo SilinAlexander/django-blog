@@ -24,7 +24,10 @@ class UserProfileViewSet(GenericViewSet):
     # parser_classes = (MultiPartParser, JSONParser)
 
     def get_template_name(self):
-        return 'userprofile/profile.html'
+        if self.action == 'profile':
+            return 'userprofile/profile.html'
+        elif self.action == 'user_detail_by_id':
+            return 'userprofile/profile_by_id.html'
 
     def get_serializer_class(self):
         if self.action == 'change_password':
@@ -47,7 +50,7 @@ class UserProfileViewSet(GenericViewSet):
 
     def profile(self, request):
         serializer = self.get_serializer(instance=self.get_object())
-        return Response(serializer.data)
+        return Response(serializer.data, template_name=self.get_template_name())
 
     def change_password(self, request):
         serializer = self.get_serializer(instance=self.get_object(), data=request.data)
@@ -67,6 +70,12 @@ class UserProfileViewSet(GenericViewSet):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
+
+    def user_detail_by_id(self, request, user_id):
+
+        user = UserprofileService.get_user_profile(user_id=user_id)
+        serializer = self.get_serializer(instance=user)
+        return Response(serializer.data, template_name=self.get_template_name())
 
 
 class UserListView(GenericAPIView):
