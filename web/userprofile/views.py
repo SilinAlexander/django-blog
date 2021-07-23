@@ -28,6 +28,8 @@ class UserProfileViewSet(GenericViewSet):
             return 'userprofile/profile.html'
         elif self.action == 'user_detail_by_id':
             return 'userprofile/profile_by_id.html'
+        elif self.action == 'get_user_list':
+            return 'userprofile/users.html'
 
     def get_serializer_class(self):
         if self.action == 'change_password':
@@ -36,11 +38,13 @@ class UserProfileViewSet(GenericViewSet):
             return serializers.ChangeAvatarSerializer
         if self.action == 'update':
             return serializers.UpdateProfileSerializer
+        if self.action == 'get_user_list':
+            return serializers.UserSerializer
         return serializers.UserProfileSerializer
 
     def get_queryset(self):
 
-        return User.objects.filter(id=self.request.user.id)
+        return UserprofileService.user_queryset()
 
     def get_object(self):
         obj = UserprofileService.get_user_profile(user_id=self.request.user.id)
@@ -77,19 +81,27 @@ class UserProfileViewSet(GenericViewSet):
         serializer = self.get_serializer(instance=user)
         return Response(serializer.data, template_name=self.get_template_name())
 
-
-class UserListView(GenericAPIView):
-
-    template_name = 'userprofile/users.html'
-
-    serializer_class = UserSerializer
-
-    def get_queryset(self):
-        return UserprofileService.user_queryset()
-
-    def get(self, request):
+    def get_user_list(self, request):
         serializer = self.get_serializer(self.get_queryset(), many=True)
         data = {
             'users': serializer.data
         }
-        return Response(data, template_name=self.template_name)
+        return Response(data, template_name=self.get_template_name())
+
+
+
+# class UserListView(GenericAPIView):
+#
+#     template_name = 'userprofile/users.html'
+#
+#     serializer_class = UserSerializer
+#
+#     def get_queryset(self):
+#         return UserprofileService.user_queryset()
+#
+#     def get(self, request):
+#         serializer = self.get_serializer(self.get_queryset(), many=True)
+#         data = {
+#             'users': serializer.data
+#         }
+#         return Response(data, template_name=self.template_name)

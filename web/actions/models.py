@@ -17,3 +17,14 @@ class LikeDislike(models.Model):
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey()
     objects = models.Manager()
+
+
+class Follower(models.Model):
+    subscriber = models.ForeignKey(User, on_delete=models.CASCADE, related_name='following')
+    to_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='followers')
+    date = models.DateTimeField(auto_now=True, db_index=True)
+    objects = models.Manager()
+
+    class Meta:
+        unique_together = ('subscriber', 'to_user')
+        ordering = ('-date', )

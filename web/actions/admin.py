@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import LikeDislike
+from .models import LikeDislike, Follower
 from django.contrib.contenttypes.admin import GenericTabularInline
 
 
@@ -22,3 +22,10 @@ class LikeDislikeInline(GenericTabularInline):
 
     def has_delete_permission(self, request, obj=None):
         return False
+
+
+@admin.register(Follower)
+class FollowerAdmin(admin.ModelAdmin):
+    list_display = ('to_user', 'subscriber', )
+    date_hierarchy = 'date'
+

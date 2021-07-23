@@ -35,6 +35,7 @@
                                     <h4 class="card-title">Sunlimetech</h4>
                                     <p class="card-text">
                                       <a href="{% url 'userprofile:user_by_id' user.id %}">View profile</a>
+
                                     </p>
                                     <ul class="list-inline">
                                         <li class="list-inline-item">
@@ -58,6 +59,7 @@
                                             </a>
                                         </li>
                                     </ul>
+                                   <a data-id="{{ user.id }}" data-href="{% url %}" href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>Follow</a>
                                 </div>
                             </div>
                         </div>
@@ -73,3 +75,6 @@
 <!-- Team -->
 
 {% endblock container %}
+{% block jquery %}
+$.getScript('{% static 'userprofile/js/follow.js' %}');
+{% endblock %}
