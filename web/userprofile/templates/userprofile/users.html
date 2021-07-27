@@ -25,7 +25,7 @@
                                     <p><img class=" img-fluid" src="{{ user.image }}" alt="card image"></p>
                                     <h4 class="card-title">{{ user.full_name }}</h4>
                                     <p class="card-text">This is basic card with image on top, title, description and button.</p>
-                                    <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                                    <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -39,27 +39,27 @@
                                     </p>
                                     <ul class="list-inline">
                                         <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                            <a class="social-icon text-xs-center" target="_blank" href="#">
                                                 <i class="fa fa-facebook"></i>
                                             </a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                            <a class="social-icon text-xs-center" target="_blank" >
                                                 <i class="fa fa-twitter"></i>
                                             </a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                            <a class="social-icon text-xs-center" target="_blank" >
                                                 <i class="fa fa-skype"></i>
                                             </a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                            <a class="social-icon text-xs-center" target="_blank" >
                                                 <i class="fa fa-google"></i>
                                             </a>
                                         </li>
                                     </ul>
-                                   <a data-id="{{ user.id }}" data-href="{% url %}" href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>Follow</a>
+                                   <a data-id="{{ user.id }}"  data-href="{% url 'actions:follow' %}" class="btn btn-primary btn-sm followButton"><i class="fa fa-plus"></i>Follow</a>
                                 </div>
                             </div>
                         </div>

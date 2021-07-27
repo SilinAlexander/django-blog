@@ -15,3 +15,9 @@ class LikeIconStatus(TextChoices):
     LIKED = ('liked', 'Liked')
     DISLIKED = ('disliked', 'Disliked')
     CANCELED = ('canceled', 'Canceled')
+
+
+class SubscribeStatus(TextChoices):
+    FOLLOW = ('Follow', 'Followed')
+    UNFOLLOW = ('Unfollow', 'Unfollowed')
+

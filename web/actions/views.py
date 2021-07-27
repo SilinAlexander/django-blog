@@ -1,7 +1,7 @@
 import logging
 from django.utils.translation import gettext_lazy as _
 from drf_yasg.utils import swagger_auto_schema
-from rest_framework.generics import GenericAPIView
+from rest_framework.generics import GenericAPIView, CreateAPIView
 from rest_framework.response import Response
 from rest_framework import status
 
@@ -20,3 +20,9 @@ class LikeDislikeView(GenericAPIView):
         serializer.is_valid(raise_exception=True)
         data = serializer.save()
         return Response(data)
+
+
+class FollowView(CreateAPIView):
+
+    serializer_class = serializers.SubscriberToUserSerializer
+

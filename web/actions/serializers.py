@@ -3,7 +3,7 @@ from typing import Union
 from rest_framework import serializers
 from .models import LikeDislike
 from blog.models import Article, Comment
-from .choices import LikeObjects, LikeStatus, LikeIconStatus
+from .choices import LikeObjects, LikeStatus, LikeIconStatus, SubscribeStatus
 from blog.services import BlogService
 from .services import ActionsService
 
@@ -47,3 +47,18 @@ class LikeDislikeSerializer(serializers.Serializer):
             'status': icon_status,
         }
         return data
+
+
+class SubscriberToUserSerializer(serializers.Serializer):
+
+    to_user = serializers.IntegerField(min_value=1)
+
+    def save(self, **kwargs):
+        user = self.context['request'].user
+        print(user)
+        if not ActionsService.is_user_followed(user, self.validated_data['to_user']):
+            ActionsService.follow_user(user, self.validated_data['to_user'])
+        else:
+            ActionsService.unfollow_user(user, self.validated_data['to_user'])
+
+
