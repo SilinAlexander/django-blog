@@ -2,6 +2,8 @@ from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from .models import Profile, Address
 from dj_rest_auth.serializers import PasswordChangeSerializer
+from actions.services import ActionsService
+from actions.choices import SubscribeStatus
 
 User = get_user_model()
 
@@ -51,7 +53,14 @@ class UpdateProfileSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     image = serializers.ImageField(source='profile_set.image')
+    subscribe = serializers.SerializerMethodField(method_name='get_subscribe_status')
 
     class Meta:
         model = User
-        fields = ('id', 'full_name', 'image')
+        fields = ('id', 'full_name', 'image', 'subscribe')
+
+    def get_subscribe_status(self, user):
+        subscriber = self.context['request'].user
+        if ActionsService.is_user_followed(subscriber, user.id):
+            return SubscribeStatus.UNFOLLOW
+        return SubscribeStatus.FOLLOW

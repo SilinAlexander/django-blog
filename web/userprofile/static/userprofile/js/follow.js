@@ -22,6 +22,7 @@ function followMe(e){
     data: data,
     success: function(data){
     console.log('success', data)
+    button.text(data.status)
     }
     })
     }

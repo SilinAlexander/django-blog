@@ -58,7 +58,22 @@ class SubscriberToUserSerializer(serializers.Serializer):
         print(user)
         if not ActionsService.is_user_followed(user, self.validated_data['to_user']):
             ActionsService.follow_user(user, self.validated_data['to_user'])
+            subscribe_status = SubscribeStatus.UNFOLLOW
         else:
             ActionsService.unfollow_user(user, self.validated_data['to_user'])
+            subscribe_status = SubscribeStatus.FOLLOW
+        return self._response_data(subscribe_status)
+
+    def validate_to_user(self, to_user: int):
+        if self.context['request'].user.id == to_user:
+            raise serializers.ValidationError('You can not subscribe by yourself')
+        return to_user
+
+    def _response_data(self, subscribe_status: str):
+        data = {
+            'status': subscribe_status
+        }
+        return data
+
 
 
