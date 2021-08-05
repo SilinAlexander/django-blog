@@ -9,7 +9,9 @@ router = DefaultRouter()
 
 urlpatterns = [
     path('like-dislike/', views.LikeDislikeView.as_view(), name='like_dislike'),
-    path('follow/', views.FollowView.as_view(), name='follow')
+    path('follow/', views.FollowView.as_view(), name='follow'),
+    path('followers/', views.FollowersViewSet.as_view({'get': 'user_followers'}), name='user_followers'),
+    path('following/', views.FollowersViewSet.as_view({'get': 'user_following'}), name='user_following'),
 
 ]
 

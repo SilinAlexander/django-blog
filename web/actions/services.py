@@ -23,3 +23,12 @@ class ActionsService:
     @staticmethod
     def unfollow_user(user, to_user_id: int):
         return user.following.filter(to_user_id=to_user_id).delete()
+
+    @staticmethod
+    def get_followers_list(user):
+        return user.followers.all()
+
+    @staticmethod
+    def get_following_list(user):
+        return user.following.all()
+

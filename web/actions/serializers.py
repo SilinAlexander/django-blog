@@ -1,11 +1,14 @@
 from typing import Union
 
+from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from .models import LikeDislike
 from blog.models import Article, Comment
 from .choices import LikeObjects, LikeStatus, LikeIconStatus, SubscribeStatus
 from blog.services import BlogService
 from .services import ActionsService
+
+User = get_user_model()
 
 
 class LikeDislikeSerializer(serializers.Serializer):
@@ -75,5 +78,11 @@ class SubscriberToUserSerializer(serializers.Serializer):
         }
         return data
 
+
+class UserFollowersSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ('id', 'full_name')
 
 
