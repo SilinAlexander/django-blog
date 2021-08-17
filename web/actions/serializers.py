@@ -80,9 +80,11 @@ class SubscriberToUserSerializer(serializers.Serializer):
 
 
 class UserFollowersSerializer(serializers.ModelSerializer):
+    image = serializers.ImageField(source='profile_set.image')
+    profile_url = serializers.URLField(source='get_absolute_url')
 
     class Meta:
         model = User
-        fields = ('id', 'full_name')
+        fields = ('id', 'full_name', 'image', 'profile_url')
 
 

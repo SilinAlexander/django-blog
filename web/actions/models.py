@@ -20,8 +20,8 @@ class LikeDislike(models.Model):
 
 
 class Follower(models.Model):
-    subscriber = models.ForeignKey(User, on_delete=models.CASCADE, related_name='following')
-    to_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='followers')
+    subscriber = models.ForeignKey(User, on_delete=models.CASCADE, related_name='follower_from')
+    to_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='follower_to')
     date = models.DateTimeField(auto_now=True, db_index=True)
     objects = models.Manager()
 

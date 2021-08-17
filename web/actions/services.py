@@ -1,5 +1,5 @@
 from django.conf import settings
-from .models import LikeDislike
+from .models import LikeDislike, Follower
 from main.decorators import except_shell
 from django.contrib.contenttypes.models import ContentType
 
@@ -14,15 +14,15 @@ class ActionsService:
 
     @staticmethod
     def is_user_followed(user, to_user_id: int) -> bool:
-        return user.following.filter(to_user_id=to_user_id).exists()
+        return Follower.objects.filter(subscriber=user, to_user_id=to_user_id).exists()
 
     @staticmethod
     def follow_user(user, to_user_id: int):
-        return user.following.create(to_user_id=to_user_id)
+        return Follower.objects.create(subscriber=user, to_user_id=to_user_id)
 
     @staticmethod
     def unfollow_user(user, to_user_id: int):
-        return user.following.filter(to_user_id=to_user_id).delete()
+        return Follower.objects.filter(subscriber=user, to_user_id=to_user_id).delete()
 
     @staticmethod
     def get_followers_list(user):

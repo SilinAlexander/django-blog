@@ -42,9 +42,9 @@ class FollowersViewSet(GenericViewSet, ListModelMixin):
 
     def get_queryset(self):
         if self.action == 'user_followers':
-            return ActionsService.get_followers_list
+            return ActionsService.get_followers_list(self.request.user)
         if self.action == 'user_following':
-            return ActionsService.get_following_list
+            return ActionsService.get_following_list(self.request.user)
 
     def user_followers(self, request):
         return self.list(request)
