@@ -1,5 +1,5 @@
 from django.conf import settings
-from .models import LikeDislike, Follower
+from .models import LikeDislike, Follower, Action
 from main.decorators import except_shell
 from django.contrib.contenttypes.models import ContentType
 
@@ -31,4 +31,8 @@ class ActionsService:
     @staticmethod
     def get_following_list(user):
         return user.following.all()
+
+    @staticmethod
+    def create_action(user, action: str, instance):
+        return Action.objects.create(user=user, action=action, content_object=instance )
 

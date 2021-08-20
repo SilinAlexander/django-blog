@@ -28,3 +28,15 @@ class Follower(models.Model):
     class Meta:
         unique_together = ('subscriber', 'to_user')
         ordering = ('-date', )
+
+
+class Action(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='actions')
+    date = models.DateTimeField(auto_now=True)
+    action = models.CharField(max_length=500)
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey()
+
+    class Meta:
+        ordering = ('-date', )
