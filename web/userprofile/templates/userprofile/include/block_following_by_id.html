@@ -1,0 +1,8 @@
+<div class="panel panel-default">
+  <div class="panel-heading"> Following <i class="fa fa-link fa-1x"></i></div>
+
+  <div class="panel-body">
+    <button id="followersButton" data-href="{% url 'actions:user_followers_by_id' id %}">Followers ({{ followers_count }})</button>
+    <button id="followingButton" data-href="{% url 'actions:user_following_by_id' id %}">Following ({{ following_count }})</button>
+  </div>
+</div>

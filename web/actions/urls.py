@@ -12,6 +12,11 @@ urlpatterns = [
     path('follow/', views.FollowView.as_view(), name='follow'),
     path('followers/', views.FollowersViewSet.as_view({'get': 'user_followers'}), name='user_followers'),
     path('following/', views.FollowersViewSet.as_view({'get': 'user_following'}), name='user_following'),
+    path('followers/<user_id>/', views.FollowersViewSet.as_view({'get': 'user_followers_by_id'}),
+         name='user_followers_by_id'),
+    path('following/<user_id>/', views.FollowersViewSet.as_view({'get': 'user_following_by_id'}),
+         name='user_following_by_id'),
+
 
 ]
 

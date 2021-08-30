@@ -62,6 +62,8 @@ class UserSerializer(serializers.ModelSerializer):
 
     def get_subscribe_status(self, user):
         subscriber = self.context['request'].user
+        if not subscriber.is_authenticated:
+            return None
         if ActionsService.is_user_followed(subscriber, user.id):
             return SubscribeStatus.UNFOLLOW
         return SubscribeStatus.FOLLOW

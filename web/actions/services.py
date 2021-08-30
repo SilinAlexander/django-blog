@@ -1,7 +1,12 @@
 from django.conf import settings
+from django.contrib.auth import get_user_model
+
 from .models import LikeDislike, Follower, Action
 from main.decorators import except_shell
 from django.contrib.contenttypes.models import ContentType
+
+
+User = get_user_model()
 
 
 class ActionsService:
@@ -34,5 +39,10 @@ class ActionsService:
 
     @staticmethod
     def create_action(user, action: str, instance):
-        return Action.objects.create(user=user, action=action, content_object=instance )
+        return Action.objects.create(user=user, action=action, content_object=instance)
+
+    @staticmethod
+    @except_shell(User.DoesNotExist, )
+    def get_user(user_id):
+        return User.objects.get(id=user_id)
 
