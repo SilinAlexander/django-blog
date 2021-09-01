@@ -82,9 +82,22 @@ class SubscriberToUserSerializer(serializers.Serializer):
 class UserFollowersSerializer(serializers.ModelSerializer):
     image = serializers.ImageField(source='profile_set.image')
     profile_url = serializers.URLField(source='get_absolute_url')
+    follow = serializers.SerializerMethodField(method_name='get_follow')
 
     class Meta:
         model = User
-        fields = ('id', 'full_name', 'image', 'profile_url')
+        fields = ('id', 'full_name', 'image', 'profile_url', 'follow')
+
+    def get_follow(self, obj):
+        user = self.context['request'].user
+        if user == obj:
+            return None
+        if not ActionsService.is_user_followed(user, obj.id):
+            subscribe_status = SubscribeStatus.FOLLOW
+        else:
+            subscribe_status = SubscribeStatus.UNFOLLOW
+        return subscribe_status
+
+
 
 

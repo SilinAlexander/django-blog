@@ -28,12 +28,16 @@ function followBodyRender(data) {
   let body = $('#followModalBody')
   body.empty()
   $.each(user_list, function(i){ //Loop the array
+  isShowFollowButton = !!user_list[i].follow
    var templateString = `
       <div class="user">
         <p>
           <img src="${user_list[i].image}" class="avatar img-circle img-thumbnail" width=50px>
           <a href='${user_list[i].profile_url}'> ${user_list[i].full_name} </a>
-          <button data-id='${user_list[i].id}' data-href='/follow/', class='followButton'>follow</button>
+          ${isShowFollowButton ? `
+          <button data-id='${user_list[i].id}' data-href='/follow/', class='followButton'>${user_list[i].follow}</button>
+          ` : ''}
+
         </p>
       </div>
    `
