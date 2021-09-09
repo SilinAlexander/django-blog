@@ -38,6 +38,11 @@ class ChangePasswordSerializer(PasswordChangeSerializer):
 
 class ChangeAvatarSerializer(serializers.ModelSerializer):
 
+    def save(self):
+        image = self.validated_data.get('image')
+        self.instance.image = image
+        self.instance.save(update_fields=['image'])
+
     class Meta:
         model = Profile
         fields = ('image', )

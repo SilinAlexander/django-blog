@@ -32,4 +32,5 @@ class FollowerAdmin(admin.ModelAdmin):
 
 @admin.register(Action)
 class ActionAdmin(admin.ModelAdmin):
+    list_display = ('user', 'date', 'action')
     date_hierarchy = 'date'

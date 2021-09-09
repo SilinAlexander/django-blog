@@ -55,7 +55,12 @@
                                             </a>
                                         </li>
                                     </ul>
-                                   <a data-id="{{ user.id }}"  data-href="{% url 'actions:follow' %}" class="btn btn-primary btn-sm followButton"><i class="fa fa-plus"></i>{{ user.subscribe }}</a>
+                                   <a data-id="{{ user.id }}"  data-href="{% url 'actions:follow' %}" class="btn btn-primary btn-sm followButton"><i class="fa fa-plus"></i>{{ user.subscribe }}
+
+                                      <img class="img-circle img-responsive"
+                                           src="{% static 'follow.jpg' %}">
+
+                                   </a>
                                 </div>
                             </div>
                         </div>

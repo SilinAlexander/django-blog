@@ -1,8 +1,12 @@
+
+{% load static %}
 <div class="panel panel-default">
   <div class="panel-heading"> Following <i class="fa fa-link fa-1x"></i></div>
 
   <div class="panel-body">
-    <button id="followersButton" data-href="{% url 'actions:user_followers' %}">Followers ({{ followers_count }})</button>
-    <button id="followingButton" data-href="{% url 'actions:user_following' %}">Following ({{ following_count }})</button>
+    <button id="followersButton" class="btn btn-success" data-href="{% url 'actions:user_followers' %}">Followers ({{ followers_count }})
+
+    </button>
+    <button id="followingButton" class="btn  btn-success" data-href="{% url 'actions:user_following' %}">Following ({{ following_count }})</button>
   </div>
 </div>

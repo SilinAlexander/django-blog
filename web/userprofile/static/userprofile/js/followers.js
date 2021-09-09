@@ -35,7 +35,7 @@ function followBodyRender(data) {
           <img src="${user_list[i].image}" class="avatar img-circle img-thumbnail" width=50px>
           <a href='${user_list[i].profile_url}'> ${user_list[i].full_name} </a>
           ${isShowFollowButton ? `
-          <button data-id='${user_list[i].id}' data-href='/follow/', class='followButton'>${user_list[i].follow}</button>
+          <button data-id='${user_list[i].id}' data-href='/follow/', class='followButton btn  btn-success'>${user_list[i].follow}</button>
           ` : ''}
 
         </p>
