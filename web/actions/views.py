@@ -63,3 +63,10 @@ class FollowersViewSet(GenericViewSet, ListModelMixin):
 
     def user_following_by_id(self, request, user_id):
         return self.list(request)
+
+
+class ActionListView(ListAPIView):
+    serializer_class = serializers.ActionListSerializer
+
+    def get_queryset(self):
+        return ActionsService.get_following_action(self.request.user)

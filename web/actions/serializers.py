@@ -2,7 +2,7 @@ from typing import Union
 
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
-from .models import LikeDislike
+from .models import LikeDislike, Action
 from blog.models import Article, Comment
 from .choices import LikeObjects, LikeStatus, LikeIconStatus, SubscribeStatus
 from blog.services import BlogService
@@ -99,5 +99,9 @@ class UserFollowersSerializer(serializers.ModelSerializer):
         return subscribe_status
 
 
+class ActionListSerializer(serializers.ModelSerializer):
 
+    class Meta:
+        model = Action
+        fields = ('user', 'date', 'action')
 

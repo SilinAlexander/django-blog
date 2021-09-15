@@ -26,7 +26,7 @@ class LikeDislikeInline(GenericTabularInline):
 
 @admin.register(Follower)
 class FollowerAdmin(admin.ModelAdmin):
-    list_display = ('to_user', 'subscriber', )
+    list_display = ('subscriber', 'to_user',)
     date_hierarchy = 'date'
 
 

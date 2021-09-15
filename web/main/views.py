@@ -16,11 +16,16 @@ class TemplateAPIView(APIView):
 
     @method_decorator(name='create', decorator=swagger_auto_schema(auto_schema=None))
     def get(self, request, *args, **kwargs):
-        return Response()
+        return Response(template_name=self.get_template_name())
+
+    def get_template_name(self):
+        return self.template_name
 
 
 
 
 
 class IndexView(TemplateAPIView):
+    def get_template_name(self):
+
     template_name = 'index.html'

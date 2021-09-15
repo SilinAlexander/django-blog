@@ -16,6 +16,7 @@ urlpatterns = [
          name='user_followers_by_id'),
     path('following/<user_id>/', views.FollowersViewSet.as_view({'get': 'user_following_by_id'}),
          name='user_following_by_id'),
+    path('actions/', views.ActionListView.as_view(), name='actions'),
 
 
 ]

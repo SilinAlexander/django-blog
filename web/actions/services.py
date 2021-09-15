@@ -46,3 +46,8 @@ class ActionsService:
     def get_user(user_id):
         return User.objects.get(id=user_id)
 
+    @staticmethod
+    def get_following_action(user):
+        following = ActionsService.get_following_list(user)
+        return Action.objects.filter(user__in=following)
+
