@@ -25,6 +25,8 @@ def user_start_to_follow(sender, created: bool, instance: Follower, **kwargs):
 
 @receiver(post_save, sender=Profile)
 def user_change_avatar(sender, created: bool, instance: Profile, **kwargs):
+    if created:
+        return
     if not kwargs.get('update_fields') and 'image' not in kwargs.get('update_fields'):
         return
     template = 'actions/change_avatar.html'

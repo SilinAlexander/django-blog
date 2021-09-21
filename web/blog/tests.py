@@ -9,7 +9,7 @@ class BlogTest(APITestCase):
 
     @classmethod
     def setUpTestData(cls):
-        a = Article.objects.create(title='title', content='крутая, крутая', category=None, author=None )
+        a = Article.objects.create(title='title', content='крутая, крутая', category=None, author=None, status=1)
         print(a.slug)
 
     def test_article_detail(self):
@@ -23,3 +23,4 @@ class BlogTest(APITestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK, response.data)
         print(response.data)
+        self.assertEqual(response.data.get('count'), 1)

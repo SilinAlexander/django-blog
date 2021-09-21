@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block container %}
+{% for action in results %}
+<p>{{ action.date }}</p>
+<p>{{ action.action|safe }}</p>
+
+{% endfor %}
+
+
+{% endblock container %}
