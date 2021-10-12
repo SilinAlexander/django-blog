@@ -52,5 +52,3 @@ def user_like_article(sender, created: bool, instance: LikeDislike, **kwargs):
     }
     action = render_to_string(template_name=template, context=data)
     ActionsService.create_action(user=instance.user, action=action, instance=instance)
-
-

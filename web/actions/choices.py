@@ -20,4 +20,3 @@ class LikeIconStatus(TextChoices):
 class SubscribeStatus(TextChoices):
     FOLLOW = ('Follow', 'Followed')
     UNFOLLOW = ('Unfollow', 'Unfollowed')
-

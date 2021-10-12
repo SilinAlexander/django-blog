@@ -50,4 +50,3 @@ class ActionsService:
     def get_following_action(user):
         following = ActionsService.get_following_list(user)
         return Action.objects.filter(user__in=following)
-

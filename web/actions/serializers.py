@@ -104,4 +104,3 @@ class ActionListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Action
         fields = ('user', 'date', 'action')
-

@@ -88,8 +88,6 @@ class UserProfileViewSet(GenericViewSet):
         }
         return Response(data, template_name=self.get_template_name())
 
-
-
 # class UserListView(GenericAPIView):
 #
 #     template_name = 'userprofile/users.html'

@@ -3,7 +3,7 @@ from django.test import TestCase
 from rest_framework.reverse import reverse_lazy
 from rest_framework.test import APITestCase
 from blog.models import Article, Category
-from  blog.choices import ArticleStatus
+from blog.choices import ArticleStatus
 from rest_framework import status
 from .choices import LikeStatus, LikeObjects, LikeIconStatus
 
@@ -27,7 +27,7 @@ class LikeTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_like_create(self):
-        url =reverse_lazy('actions:like_dislike')
+        url = reverse_lazy('actions:like_dislike')
         data = {'vote': LikeStatus.LIKE, 'model': LikeObjects.ARTICLE, 'object_id': self.article.id}
         response = self.client.post(path=url, data=data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -67,3 +67,7 @@ class LikeTest(APITestCase):
         response = self.client.post(path=url, data=data)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
+
+class FollowTest(APITestCase):
+
+    pass

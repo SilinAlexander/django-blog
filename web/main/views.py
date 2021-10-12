@@ -40,5 +40,3 @@ class IndexView(ListModelMixin, TemplateAPIView):
 
     def get_queryset(self):
         return ActionsService.get_following_action(self.request.user)
-
-
