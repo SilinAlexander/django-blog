@@ -70,4 +70,14 @@ class LikeTest(APITestCase):
 
 class FollowTest(APITestCase):
 
-    pass
+    def setUp(self):
+        user1 = User.objects.create_user(email='abctest@mail.com', password='abcdef123456')
+        user1.emailaddress_set.create(email=user1.email, verified=True, primary=True)
+        user2 = User.objects.create_user(email='abctest2@mail.com', password='abcdefg123456')
+        user2.emailaddress_set.create(email=user2.email, verified=True, primary=True)
+
+        pass
+
+    def test_like_create(self):
+
+
